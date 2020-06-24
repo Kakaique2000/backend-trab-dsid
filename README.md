@@ -21,4 +21,6 @@ npm run dev
 ```
 * DELETE /usuarios - Deleta **TODOS** os usuários kkkkk
 
+> Para fazer testes das chamadas, recomenta-se uso de um programa especializado em chamadas de API como [**Insomnia**](https://insomnia.rest/products/core/) ou o [**postman**](https://www.postman.com/downloads/)
+
 ## Para infos e lista de pendências, consulte o arquivo [resumo.md](https://github.com/Kakaique2000/backend-trab-dsid/blob/master/resumo.md)
