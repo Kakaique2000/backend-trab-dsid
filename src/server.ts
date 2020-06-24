@@ -12,6 +12,6 @@ app.use(new Router().routes())
 
 
 app.listen(4300, () => {
-    console.log('Escutando na porta 4200');
+    console.log('Escutando na porta 4300');
     
 })
