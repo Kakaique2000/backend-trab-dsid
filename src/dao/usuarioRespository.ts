@@ -7,6 +7,14 @@ export default class UsuarioRepository {
         return knex<Usuario>('usuario');
     }
 
+    public static async findByUsername(username: String): Promise<Usuario[]> {
+        return knex('usuario').where({username});
+    }
+
+    public static async findByUsernameAndPassword(username: String, password: String): Promise<Usuario[]> {
+        return knex('usuario').where({username, password});
+    }
+
     public static async store(usuario: Usuario): Promise<Usuario> {
         const [ id ]: number[] = 
             await knex<Usuario>('usuario').insert(usuario).returning("id")

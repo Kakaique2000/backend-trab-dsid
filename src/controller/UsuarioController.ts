@@ -3,11 +3,14 @@ import UsuarioRepository from "../dao/usuarioRespository"
 import { Usuario } from "../models/usuario";
 
 export class UsuarioController {
-
-
-
     public static async index(req: Request, res: Response) {
         res.send(await UsuarioRepository.findAll())
+    }
+
+    public static async findByUsername(req: Request, res: Response) {
+        const { username } = req.body;
+
+        res.send(await UsuarioRepository.findByUsername(username));
     }
 
     public static async store(req: Request, res: Response) {

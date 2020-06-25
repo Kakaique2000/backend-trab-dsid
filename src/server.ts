@@ -1,15 +1,20 @@
-import express from 'express';
 import { Usuario } from './models/usuario';
 import { knex } from './connection';
 import { Router } from './routes';
 
+const express = require('express');
+const jwt = require('jsonwebtoken');
+const bodyParser = require('body-parser');
+var cors = require('cors');
 
 // Create a new express app instance
-const app: express.Application = express();
+const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 app.use(new Router().routes())
-
+app.use(bodyParser.json());
 
 app.listen(4300, () => {
     console.log('Escutando na porta 4300');
