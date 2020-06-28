@@ -1,8 +1,9 @@
 import { Usuario } from './models/usuario';
 import { knex } from './connection';
 import { Router } from './routes';
+import { JwtController } from './auth/JwtController';
 
-const express = require('express');
+import express from 'express';
 const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
 var cors = require('cors');

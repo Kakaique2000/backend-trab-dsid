@@ -1,5 +1,6 @@
 import { Usuario } from "../models/usuario";
 import { knex } from "../connection";
+import { UsuarioDto } from "../models/dtos/usuarioDto";
 
 export default class UsuarioRepository {
 
@@ -7,26 +8,39 @@ export default class UsuarioRepository {
         return knex<Usuario>('usuario');
     }
 
-    public static async findByUsername(username: String): Promise<Usuario[]> {
-        return knex('usuario').where({username});
+    public static async findById(id: number): Promise<UsuarioDto | undefined> {
+        return knex<Usuario>('usuario')
+            .column('username', 'email', 'id')
+            .where({id})
+            .first();
     }
 
-    public static async findByUsernameAndPassword(username: String, password: String): Promise<Usuario[]> {
-        return knex('usuario').where({username, password});
+    public static async findByUsername(username: string): Promise<UsuarioDto | undefined> {
+        return knex<Usuario>('usuario')
+            .column('username', 'email', 'id')
+            .where({username})
+            .first();
     }
 
-    public static async store(usuario: Usuario): Promise<Usuario> {
+    public static async findByUsernameAndPassword(username: string, password: string): Promise<UsuarioDto | undefined> {
+        return knex<Usuario>('usuario')
+            .column('username', 'email', 'id')
+            .where({username, password})
+            .first();
+    }
+
+    public static async store(usuario: Usuario): Promise<UsuarioDto> {
         const [ id ]: number[] = 
             await knex<Usuario>('usuario').insert(usuario).returning("id")
     
-        const [ userFound ]: Usuario[] = 
-            await knex('usuario').where({id})
+        const [ userFound ]: UsuarioDto[] = 
+            await knex<Usuario>('usuario').column('username', 'email', 'id').where({id})
     
         return userFound;
     }
 
     public static async remove(id: number): Promise<void> {
-        await knex('usuario').delete().where({id})
+        await knex<Usuario>('usuario').delete().where({id})
     }
 
 

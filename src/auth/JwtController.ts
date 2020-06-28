@@ -17,7 +17,7 @@ export class JwtController {
 
             res.status(200).send({ auth: true, token, user });
         } else {
-            res.status(500).send('Login inválido!');
+            res.status(403).send('Login inválido!');
         }
     }
 

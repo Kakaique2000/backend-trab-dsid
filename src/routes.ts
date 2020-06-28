@@ -9,9 +9,9 @@ export class Router {
     public routes() {
 
         const routes = express.Router()
-        routes.get('/usuarios', UsuarioController.index)
-        routes.post('/usuarios', UsuarioController.store)
-        routes.delete('/usuarios/:id', UsuarioController.remove)
+        routes.get('/usuarios', JwtController.verifyJWT ,UsuarioController.index)
+        routes.post('/usuarios', JwtController.verifyJWT, UsuarioController.store)
+        routes.delete('/usuarios/:id', JwtController.verifyJWT, UsuarioController.remove)
         routes.post('/usuarios/login', JwtController.login)
 
         return routes

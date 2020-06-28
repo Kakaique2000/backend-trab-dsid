@@ -7,6 +7,13 @@ export class UsuarioController {
         res.send(await UsuarioRepository.findAll())
     }
 
+    /**
+     * findById
+     */
+    public findById() {
+        
+    }
+
     public static async findByUsername(req: Request, res: Response) {
         const { username } = req.body;
 
