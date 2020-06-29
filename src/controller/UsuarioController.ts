@@ -10,8 +10,9 @@ export class UsuarioController {
     /**
      * findById
      */
-    public findById() {
-        
+    public static async findById(req: Request, res: Response) {
+        const id: number = parseInt(req.params.id);
+        res.send(await UsuarioRepository.findById(id));
     }
 
     public static async findByUsername(req: Request, res: Response) {
