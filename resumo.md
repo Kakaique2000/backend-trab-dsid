@@ -32,7 +32,7 @@
 
 ### Requisitos funcionais:
 
-- [ ]  O usuário precisa ser capaz de realizar o logon com seu e-mail e senha
+- [X]  O usuário precisa ser capaz de realizar o logon com seu usuario e senha
     - [ ]  O usuário precisa ser capaz de visualizar seu perfil
     - [ ]  O usuário precisa ser capaz de alterar informações do perfil
         - [ ]  O usuário deve conseguir alterar seu Nome
@@ -53,13 +53,13 @@
 
     - Endpoints
         - **/usuários**
-            - [ ]  GET /usuarios
+            - [X]  GET /usuarios
                 - admin
-            - [ ]  POST /usuarios
+            - [X]  POST /usuarios
                 - admin
-            - [ ]  GET /usuarios/:id
+            - [X]  GET /usuarios/:id
                 - admin e usuario do id = :id
-            - [ ]  DELETE /usuarios/:id
+            - [X]  DELETE /usuarios/:id
                 - admin
             - [ ]  PUT /usuarios/:id
                 - admin e usuario do id = :id (Para algumas informações)
@@ -73,20 +73,20 @@
                 - [ ]  PUT /usuarios/:id/voos
                     - admin e usuario id = :id (usuario pode somente cancelar a passagem)
         - **/aeroportos**
-            - [ ]  GET /aeroportos
+            - [X]  GET /aeroportos
                 - admin, usuario, no-auth
-            - [ ]  POST /aeroportos
+            - [X]  POST /aeroportos
                 - admin
-            - [ ]  GET /aeroportos/:id
+            - [X]  GET /aeroportos/:id
                 - admin, usuario, no-auth
-            - [ ]  DELETE /aeroportos/:id
+            - [X]  DELETE /aeroportos/:id
                 - admin
         - **/login**
-            - [ ]  POST /Login
+            - [X]  POST /Login
                 - retorna um Bearer com a autorização (se bem sucedido, claro)
 
     - Models
-        - [ ]  Usuario
+        - [X]  Usuario
 
             ```tsx
             {
@@ -115,7 +115,7 @@
             }
             ```
 
-        - [ ]  Aeroportos - implementação de cidades e UF baseada na [API do IBGE de cidades e estados](https://servicodados.ibge.gov.br/api/docs/localidades?versao=1)
+        - [X]  Aeroportos - implementação de cidades e UF baseada na [API do IBGE de cidades e estados](https://servicodados.ibge.gov.br/api/docs/localidades?versao=1)
 
             ```tsx
             {
