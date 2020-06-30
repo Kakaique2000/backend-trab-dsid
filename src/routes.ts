@@ -14,8 +14,8 @@ export class Router {
         routes.post('/usuarios/login', JwtController.login)
 
         // usuarios
+        routes.post('/usuarios', UsuarioController.store)
         routes.get('/usuarios', JwtController.verifyJWT ,UsuarioController.index)
-        routes.post('/usuarios', JwtController.verifyJWT, UsuarioController.store)
         routes.delete('/usuarios/:id', JwtController.verifyJWT, UsuarioController.remove)
         
         // aeroportos

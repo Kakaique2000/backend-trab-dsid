@@ -12,8 +12,8 @@ export class JwtController {
 
         const user = await UsuarioRepository.findByUsernameAndPassword(username, password);
 
-        if (user[0]) {
-            const token = jwt.sign({ id: user[0].id}, process.env.SECRET);
+        if (user) {
+            const token = jwt.sign({ id: user.id}, process.env.SECRET);
 
             res.status(200).send({ auth: true, token, user });
         } else {
