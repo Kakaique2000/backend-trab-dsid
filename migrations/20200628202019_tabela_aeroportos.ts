@@ -1,5 +1,7 @@
 
-exports.up = function(knex) {
+import * as Knex from 'knex';
+
+export async function up(knex: Knex): Promise<any> {
     return knex.schema.createTable('aeroporto', function(t) {
         t.increments('id').primary()
         t.string('codigo_cidade').notNullable()
@@ -9,6 +11,6 @@ exports.up = function(knex) {
     })
 };
 
-exports.down = function(knex) {
+export async function down(knex: Knex): Promise<any> {
     return knex.schema.dropTableIfExists('aeroporto')
 };

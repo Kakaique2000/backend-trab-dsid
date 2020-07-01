@@ -4,25 +4,23 @@
 ```bash
 npm i
 npx knex migrate:latest
+npx knex seed:run usuarios_seed
 npm run dev
 ```
 
-### Endpoints funcionais até o momento:
-**url base: *http://localhost:4300***
-
-* GET /usuarios - lista todos os usuarios (necessário adequar models)
-* POST /usuarios -Adiciona um novo usuário
-```json
-{
-	"username": "kakaique2000",
-	"password": "xamaquenoisvem",
-	"email": "kaique.lisboa@gmail.com"
-}
+# Somente neste commit (caso voce esteja com os knexfile e migrations em .js)
+```bash
+npm run migrate_reset
+npx run knex seed:run usuarios_seed
 ```
-* DELETE /usuarios - Deleta **TODOS** os usuários kkkkk
+## Para fazer Login:
+- usuario: admin
+- senha: admin1234
 
-> Para fazer testes das chamadas, recomenta-se uso de um programa especializado em chamadas de API como [**Insomnia**](https://insomnia.rest/products/core/) ou o [**postman**](https://www.postman.com/downloads/)
+## Testando a API
 
-> Collection do Insomnia presente na raiz do projeto, importe a collection para ter o workspace de teste dos endpoints preparado (lembrando que para fazer grande parte das chamadasserá necessário fazer a chamada de autorization para gerar o token que será utilizado nas próximas chamadas)
+> Para fazer testes das chamadas, é necessário o uso de um programa especializado em chamadas de API como [**Insomnia**](https://insomnia.rest/products/core/) ou o [**postman**](https://www.postman.com/downloads/)
 
-## Para infos e lista de pendências, consulte o arquivo [resumo.md](https://github.com/Kakaique2000/backend-trab-dsid/blob/master/resumo.md)
+> Collection do Insomnia presente na raiz do projeto, importe a collection para ter o workspace de teste dos endpoints preparado (lembrando que para fazer grande parte das chamadas será necessário fazer a chamada de autorization para gerar o token que será utilizado nas próximas chamadas)
+
+## Para infos e lista de pendências, consulte este [link](https://www.notion.so/Trabalho-de-DSID-cf1018d0bbb24b3e9d4bea1d8df892ee)
