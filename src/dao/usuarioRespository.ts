@@ -22,6 +22,14 @@ export default class UsuarioRepository {
             .first();
     }
 
+    public static async update(user: Usuario, id: number): Promise<UsuarioDto | undefined> {
+        await knex<Usuario>('usuario')
+            .update(user)
+            .where({ id })
+        
+        return this.findById(id);
+    }
+
     public static async findByUsernameAndPassword(username: string, password: string): Promise<UsuarioDto | undefined> {
         return knex<Usuario>('usuario')
         .column('username', 'email', 'id', 'credits', 'born_date', 'name')

@@ -1,8 +1,8 @@
 import UsuarioRepository from "../dao/usuarioRespository"
 import { Request, Response, NextFunction } from "express";
+import jwt from 'jsonwebtoken';
 
 const dotenv = require("dotenv");
-const jwt = require('jsonwebtoken');
 
 dotenv.config();
 
@@ -13,7 +13,7 @@ export class JwtController {
         const user = await UsuarioRepository.findByUsernameAndPassword(username, password);
 
         if (user) {
-            const token = jwt.sign({ id: user.id}, process.env.SECRET);
+            const token = jwt.sign({ id: user.id}, process.env.SECRET!);
 
             res.status(200).send({ auth: true, token, user });
         } else {
@@ -21,21 +21,24 @@ export class JwtController {
         }
     }
 
-    public static verifyJWT(req: Request, res: Response, next: any) {
+    public static verifyJWT(req: Request, res: Response, next: NextFunction) {
         const authHeader = req.headers.authorization;
 
         if (authHeader) {
             const token = authHeader.split(' ')[1];
     
-            jwt.verify(token, process.env.SECRET, (err: any, user: any) => {
+            jwt.verify(token, process.env.SECRET!, (err: any, user: any) => {
                 if (err) {
                     return res.sendStatus(403);
                 }
-    
+                
+                res.locals.id = user.id;
+                console.log(req.headers);
                 next();
             });
         } else {
             res.sendStatus(401);
         }
     }
+
 }
