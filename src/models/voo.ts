@@ -4,4 +4,5 @@ export interface Voo {
     aeroportoDestinoId: number;
     dataPrevista: Date;
     limitePassageiros: number;
+    imgName: string;
 }
