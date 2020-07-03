@@ -3,6 +3,7 @@ import { UsuarioController } from './controller/UsuarioController';
 import UsuarioRepository from "./dao/usuarioRespository"
 import { JwtController } from './auth/JwtController';
 import { AeroportoController } from './controller/AeroportoController';
+import { VooController } from './controller/vooController';
 import { Usuario } from './models/usuario';
 
 export class Router {
@@ -44,6 +45,10 @@ export class Router {
         routes.get('/aeroportos/:id', AeroportoController.findById);
         routes.post('/aeroportos', JwtController.verifyJWT, AeroportoController.store);
         routes.delete('/aeroportos/:id', JwtController.verifyJWT, AeroportoController.remove);
+
+        // Voo
+        routes.get('/voos', VooController.index);
+        routes.get('/voos/:id', VooController.findById);
 
         return routes
     }

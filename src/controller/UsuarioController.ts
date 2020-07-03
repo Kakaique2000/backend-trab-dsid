@@ -82,7 +82,7 @@ export class UsuarioController {
         
 
         if (res.locals.id !== id) {
-            return res.status(401).json({message: 'Voce não está autorizado para modificar o usuário com este ID'})
+            return res.status(403).json({message: 'Voce não está habilitado para modificar o usuário com id ' + id})
         }
         next();
     }

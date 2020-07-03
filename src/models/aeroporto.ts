@@ -1,6 +1,7 @@
 export interface Aeroporto {
     id: number;
-    codigo_cidade: number;
+    codigo_cidade: string;
+    endereco: string;
     nome: string;
-    cnpj: string;
+    cep: string;
 }
