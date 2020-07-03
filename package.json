@@ -7,7 +7,7 @@
     "dev": "ts-node-dev --respawn --transpileOnly --ignore-watch node_modules --no-notify src/server.ts",
     "debug": "ts-node-dev --inspect --respawn --transpileOnly --ignore-watch node_modules --no-notify src/server.ts",
     "build": "tsc -p .",
-    "migrate_reset": "npx knex migrate:rollback && npx knex migrate:rollback && rm migrations/*.js && npx knex migrate:latest" 
+    "migrate_reset": "npx knex migrate:rollback && npx knex migrate:rollback && rm migrations/*.js && npx knex migrate:latest"
   },
   "dependencies": {
     "axios": "^0.19.2",
