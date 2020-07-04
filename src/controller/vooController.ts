@@ -13,4 +13,4 @@ export class VooController {
             .then(e => res.json(e))
             .catch(e => res.status(404).json(e))    
     }
-}z
+}
