@@ -3,7 +3,9 @@ import VooRepository from "../dao/vooRepository";
 
 export class VooController {
     public static async index(req: Request, res: Response) {
-        res.json(await VooRepository.findAll())
+        const { exitDate, backDate } = req.query;
+
+        res.json(await VooRepository.findAll(exitDate, backDate))
   }
 
     public static async findById(req: Request, res: Response) {

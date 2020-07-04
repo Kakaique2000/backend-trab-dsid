@@ -1,10 +1,14 @@
 import { knex } from "../connection";
 import { Voo } from "../models/voo";
+import moment from "moment";
 
 export default class VooRepository {
 
-    public static async findAll(): Promise<Voo[]> {
-        return knex<Voo>('voo')
+    public static async findAll(exitDate, backDate): Promise<Voo[]> {
+
+        console.log(exitDate, backDate);
+
+        let query = knex<Voo>('voo')
             .innerJoin('aeroporto as origem', 'voo.aeroportoOrigemId', 'origem.id')
             .innerJoin('aeroporto as destino', 'voo.aeroportoDestinoId', 'destino.id')
             .column(
@@ -15,10 +19,16 @@ export default class VooRepository {
                 {originCity: 'origem.cidade'},
                 {destinyCity: 'destino.cidade'},
                 {maxPassengers: 'limitePassageiros'},
-                { imgName: 'imgName' },
-                { previstDate: 'dataPrevista' },
-                { imgUrl: 'imgUrl' }
+                {previstDate: 'dataPrevista' },
+                {imgUrl: 'imgUrl' },
+                {cost: 'custoPassagem'}
             );
+
+            if (exitDate) {
+                query.where('dataPrevista', '>=', moment(new Date(exitDate)).startOf('day').toDate())
+            }
+
+            return query;
     }
 
     public static async findById(id: number): Promise<Voo | undefined> {
