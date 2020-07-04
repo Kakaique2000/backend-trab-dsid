@@ -12,9 +12,10 @@ export default class VooRepository {
                 {destiny: 'destino.nome'}, 
                 {originAddress: 'origem.endereco'},
                 {destinyAddress: 'destino.endereco'},
-                {originStateCode: 'destino.codigo_cidade'},
-                {destinyStateCode: 'destino.codigo_cidade'},
-                {maxPassengers: 'limitePassageiros'}
+                {originCity: 'origem.cidade'},
+                {destinyCity: 'destino.cidade'},
+                {maxPassengers: 'limitePassageiros'},
+                {imgName: 'imgName'}
             );
     }
 

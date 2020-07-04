@@ -7,6 +7,7 @@ export async function up(knex: Knex): Promise<any> {
         t.integer('aeroportoOrigemId').references('id').inTable('aeroporto').notNullable().onDelete('cascade')
         t.integer('aeroportoDestinoId').references('id').inTable('aeroporto').notNullable().onDelete('cascade')
         t.timestamp('dataPrevista').notNullable()
+        t.string('imgName').defaultTo('')
         t.integer('limitePassageiros').notNullable().defaultTo(40)
         t.timestamps(true, true)
     })
