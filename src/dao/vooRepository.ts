@@ -17,7 +17,8 @@ export default class VooRepository {
                 {maxPassengers: 'limitePassageiros'},
                 { imgName: 'imgName' },
                 { previstDate: 'dataPrevista' },
-                { imgUrl: 'imgUrl' }
+                { imgUrl: 'imgUrl' },
+                { cost: 'custoPassagem'}
             );
     }
 
