@@ -3,7 +3,6 @@ export interface Voo {
     aeroportoOrigemId: number;
     aeroportoDestinoId: number;
     dataPrevista: string;
-    dataRetorno: string;
     limitePassageiros: number;
     imgName: string;
     imgUrl: string;

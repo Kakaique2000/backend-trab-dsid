@@ -5,9 +5,6 @@ import moment from "moment";
 export default class VooRepository {
 
     public static async findAll(exitDate, backDate): Promise<Voo[]> {
-
-        console.log(exitDate, backDate);
-
         let query = knex<Voo>('voo')
             .innerJoin('aeroporto as origem', 'voo.aeroportoOrigemId', 'origem.id')
             .innerJoin('aeroporto as destino', 'voo.aeroportoDestinoId', 'destino.id')
@@ -24,8 +21,9 @@ export default class VooRepository {
                 {cost: 'custoPassagem'}
             );
 
-            if (exitDate) {
-                query.where('dataPrevista', '>=', moment(new Date(exitDate)).startOf('day').toDate())
+            if (exitDate && backDate) {
+                query.where('dataPrevista', '>=', moment(exitDate).startOf('day').toDate().toISOString())
+                query.where('dataPrevista', '<', moment(backDate).endOf('day').toDate().toISOString())
             }
 
             return query;
