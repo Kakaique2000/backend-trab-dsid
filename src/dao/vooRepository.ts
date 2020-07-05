@@ -1,5 +1,5 @@
 import { Voo } from "../models/voo";
-import Knex from "knex";
+import Knex from 'knex';
 import moment from 'moment';
 const knexVoo: Knex = require("../connection");
 
@@ -43,16 +43,13 @@ export default class VooRepository {
                 {originCity: 'origem.cidade'},
                 {destinyCity: 'destino.cidade'},
                 {maxPassengers: 'limitePassageiros'},
-                { imgName: 'imgName' },
                 { previstDate: 'dataPrevista' },
                 { imgUrl: 'imgUrl' },
                 { cost: 'custoPassagem'}
             )
             .first()
             .catch(e => {
-                
                 return Promise.reject({error: `Não foi possível encontrar voo de id ${id}`, description: e})}
-            
         );
                 
         if (!voo) return Promise.reject({ error: `Não foi possível encontrar voo de id ${id}` });

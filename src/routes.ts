@@ -39,6 +39,23 @@ export class Router {
             UsuarioController.ObjectValidator<Usuario>(['username', 'email', 'id', 'password', 'born_date', 'name']),
             UsuarioController.update)
         
+        routes.post('/usuarios/:id/voos',
+            JwtController.verifyJWT,
+            UsuarioController.verifyLoggedUserId,
+            UsuarioController.compraPassagem
+        )
+
+        routes.get('/usuarios/:id/voos',
+            JwtController.verifyJWT,
+            UsuarioController.verifyLoggedUserId,
+            UsuarioController.vePassagens
+        )
+            
+        routes.post('/usuarios/:id/creditos',
+            JwtController.verifyJWT,
+            UsuarioController.verifyLoggedUserId,
+            UsuarioController.obtemCredito
+        )
         // aeroportos
         routes.get('/aeroportos', AeroportoController.index);
         routes.get('/aeroportos/:id', AeroportoController.findById);

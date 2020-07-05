@@ -6,5 +6,5 @@ export interface Voo {
     limitePassageiros: number;
     imgName: string;
     imgUrl: string;
-    custoPassagem: number;
+    cost: number;
 }
