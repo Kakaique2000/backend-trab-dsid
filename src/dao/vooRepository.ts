@@ -1,11 +1,12 @@
 import { Voo } from "../models/voo";
 import Knex from "knex";
+import moment from 'moment';
 const knexVoo: Knex = require("../connection");
 
 export default class VooRepository {
 
-    public static async findAll(): Promise<Voo[]> {
-        return knexVoo<Voo>('voo')
+    public static async findAll(exitDate, backDate): Promise<Voo[]> {
+        let query = knexVoo<Voo>('voo')
             .innerJoin('aeroporto as origem', 'voo.aeroportoOrigemId', 'origem.id')
             .innerJoin('aeroporto as destino', 'voo.aeroportoDestinoId', 'destino.id')
             .column(
@@ -16,11 +17,17 @@ export default class VooRepository {
                 {originCity: 'origem.cidade'},
                 {destinyCity: 'destino.cidade'},
                 {maxPassengers: 'limitePassageiros'},
-                { imgName: 'imgName' },
-                { previstDate: 'dataPrevista' },
-                { imgUrl: 'imgUrl' },
-                { cost: 'custoPassagem'}
+                {previstDate: 'dataPrevista' },
+                {imgUrl: 'imgUrl' },
+                {cost: 'custoPassagem'}
             );
+
+            if (exitDate && backDate) {
+                query.where('dataPrevista', '>=', moment(exitDate).startOf('day').toDate().toISOString())
+                query.where('dataPrevista', '<', moment(backDate).endOf('day').toDate().toISOString())
+            }
+
+            return query;
     }
 
     public static async findById(id: number): Promise<Voo | undefined> {

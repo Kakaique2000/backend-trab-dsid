@@ -13,7 +13,7 @@ export async function seed(knex: Knex): Promise<any> {
                     cidade: 'São Paulo',
                     codigo_cidade: '456',
                     endereco: 'Rua 1234',
-                    nome: 'aeroporto de Congonhas'
+                    nome: 'Aeroporto de Congonhas'
                 },
                 {
                     id: 2,
@@ -21,7 +21,23 @@ export async function seed(knex: Knex): Promise<any> {
                     cidade: 'São Paulo',
                     codigo_cidade: '456',
                     endereco: 'Rua 1234',
-                    nome: 'aeroporto de Guarulhos'
+                    nome: 'Aeroporto de Guarulhos'
+                },
+                {
+                    id: 3,
+                    cep: '21941-900',
+                    cidade: 'Rio de Janeiro',
+                    codigo_cidade: '456',
+                    endereco: 'Av. Vinte de Janeiro, s/nº - Ilha do Governador, Rio de Janeiro - RJ',
+                    nome: ' Aeroporto Internacional Tom Jobim'
+                },
+                {
+                    id: 4,
+                    cep: '45810-000',
+                    cidade: 'Porto Seguro',
+                    codigo_cidade: '456',
+                    endereco: 'Estr. do Aeroporto, S/N - Cidade Alta, Porto Seguro - BA',
+                    nome: 'Aeroporto Internacional de Porto Seguro'
                 },
             ]);
         });
