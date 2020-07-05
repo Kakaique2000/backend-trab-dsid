@@ -10,6 +10,7 @@ export default class VooRepository {
             .innerJoin('aeroporto as origem', 'voo.aeroportoOrigemId', 'origem.id')
             .innerJoin('aeroporto as destino', 'voo.aeroportoDestinoId', 'destino.id')
             .column(
+                {id: 'voo.id'},
                 {origin: 'origem.nome'}, 
                 {destiny: 'destino.nome'}, 
                 {originAddress: 'origem.endereco'},
@@ -36,6 +37,7 @@ export default class VooRepository {
             .innerJoin('aeroporto as origem', 'voo.aeroportoOrigemId', 'origem.id')
             .innerJoin('aeroporto as destino', 'voo.aeroportoDestinoId', 'destino.id')
             .column(
+                {id: 'voo.id'},
                 {origin: 'origem.nome'}, 
                 {destiny: 'destino.nome'}, 
                 {originAddress: 'origem.endereco'},
