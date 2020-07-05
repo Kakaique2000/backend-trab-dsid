@@ -1,5 +1,8 @@
-
 import Knex from "knex";
+
+
 const knexFile = require('../knexfile')
 
-export const knex = Knex(knexFile[process.env['ENVIRONMENT'] || 'development']);
+let knex = require('knex')(knexFile[process.env['ENVIRONMENT'] || 'development']);
+
+module.exports = knex

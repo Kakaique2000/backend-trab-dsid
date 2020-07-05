@@ -1,16 +1,18 @@
 import { Aeroporto } from "../models/aeroporto";
 import Knex from "knex";
-const knexFile = require('../../knexfile')
-const knex = Knex(knexFile[process.env['ENVIRONMENT'] || 'development']);
+const knexAeroporto: Knex = require("../connection");
+// import Knex from "knex";
+// const knexFile = require('../../knexfile')
+// const knex = Knex(knexFile[process.env['ENVIRONMENT'] || 'development']);
 
 export default class aeroportoRepository {
 
     public static async findAll(): Promise<Aeroporto[]> {
-        return knex<Aeroporto>('aeroporto');
+        return knexAeroporto<Aeroporto>('aeroporto');
     }
 
     public static async findById(id: number): Promise<Aeroporto | undefined> {
-        const aeroporto = await knex<Aeroporto>('aeroporto')
+        const aeroporto = await knexAeroporto<Aeroporto>('aeroporto')
             .where({id})
             .first()
             .catch(e =>{
@@ -48,9 +50,9 @@ export default class aeroportoRepository {
     public static async store(aeroporto: Aeroporto): Promise<Aeroporto | undefined> {
         let id: number = 0;
         try {
-            const [ id ]: number[] = await knex<Aeroporto>('aeroporto').insert(aeroporto).returning("id");
+            const [ id ]: number[] = await knexAeroporto<Aeroporto>('aeroporto').insert(aeroporto).returning("id");
             
-            const [ aeroportoFound ]: Aeroporto[] = await knex<Aeroporto>('aeroporto').where({id});
+            const [ aeroportoFound ]: Aeroporto[] = await knexAeroporto<Aeroporto>('aeroporto').where({id});
             return aeroportoFound;
        } catch (err) {
            return Promise.reject({error: 'não foi possíver inserir aeroporto', description: err})
@@ -58,7 +60,7 @@ export default class aeroportoRepository {
     }
 
     public static async remove(id: number): Promise<void> {
-        await knex<Aeroporto>('aeroporto').delete().where({id})
+        await knexAeroporto<Aeroporto>('aeroporto').delete().where({id})
     }
 
 

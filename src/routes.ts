@@ -5,7 +5,6 @@ import { JwtController } from './auth/JwtController';
 import { AeroportoController } from './controller/AeroportoController';
 import { VooController } from './controller/vooController';
 import { Usuario } from './models/usuario';
-
 export class Router {
 
     

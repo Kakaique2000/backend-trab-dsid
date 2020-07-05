@@ -1,10 +1,11 @@
-import { knex } from "../connection";
 import { Voo } from "../models/voo";
+import Knex from "knex";
+const knexVoo: Knex = require("../connection");
 
 export default class VooRepository {
 
     public static async findAll(): Promise<Voo[]> {
-        return knex<Voo>('voo')
+        return knexVoo<Voo>('voo')
             .innerJoin('aeroporto as origem', 'voo.aeroportoOrigemId', 'origem.id')
             .innerJoin('aeroporto as destino', 'voo.aeroportoDestinoId', 'destino.id')
             .column(
@@ -23,7 +24,7 @@ export default class VooRepository {
     }
 
     public static async findById(id: number): Promise<Voo | undefined> {
-        const voo = await knex<Voo>('voo')
+        const voo = await knexVoo<Voo>('voo')
             .where('voo.id', '=', id)
             .innerJoin('aeroporto as origem', 'voo.aeroportoOrigemId', 'origem.id')
             .innerJoin('aeroporto as destino', 'voo.aeroportoDestinoId', 'destino.id')

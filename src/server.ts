@@ -1,5 +1,4 @@
 import { Usuario } from './models/usuario';
-import { knex } from './connection';
 import { Router } from './routes';
 import { JwtController } from './auth/JwtController';
 
