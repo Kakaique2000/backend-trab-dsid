@@ -20,7 +20,7 @@ export default class VooRepository {
                 {maxPassengers: 'limitePassageiros'},
                 {previstDate: 'dataPrevista' },
                 {imgUrl: 'imgUrl' },
-                {cost: 'custoPassagem'}
+                { cost: 'custoPassagem' },
             );
 
             if (exitDate && backDate) {
