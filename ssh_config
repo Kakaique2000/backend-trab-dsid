@@ -1,0 +1,4 @@
+Host aws-ec2
+    HostName ec2-54-208-42-168.compute-1.amazonaws.com
+    User ubuntu
+    IdentityFile C:\Users\rosemeire\Desktop\Kaka\USP\usp.pem

@@ -1,12 +1,12 @@
 import * as Knex from "knex";
-import { Aeroporto } from "../src/models/aeroporto";
+import { Aeroporto } from "../models/aeroporto";
 
 export async function seed(knex: Knex): Promise<any> {
     // Deletes ALL existing entries
     return knex("aeroporto").del()
         .then(() => {
             // Inserts seed entries
-            return knex<Aeroporto>("aeroporto").insert([
+            return knex<any>("aeroporto").insert([
                 {
                     id: 1,
                     cep: '12345678',

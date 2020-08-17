@@ -1,12 +1,11 @@
 import { Response, Request, NextFunction } from "express"
 import UsuarioRepository from "../dao/usuarioRespository"
 import { Usuario } from "../models/usuario";
-import { body, validationResult, checkSchema, matchedData } from 'express-validator'
-import jwt from "jsonwebtoken"
+import { body, validationResult } from 'express-validator'
 import VooPassageiroRepository from "../dao/vooPassageiroRepository";
 import { UsuarioDto } from "../models/dtos/usuarioDto";
-import VooRepository from "../dao/vooRepository";
-import { Voo } from "../models/voo";
+import { VooSkyscannerRepository } from "../dao/vooRepository";
+import { VooSkyscanner } from "../models/voo";
 
 export class UsuarioController {
     public static async index(req: Request, res: Response) {
@@ -55,32 +54,23 @@ export class UsuarioController {
     }
 
     public static async compraPassagem(req: Request, res: Response) {
-        const { adultos, criancas, vooId, usuarioId, poltrona } = req.body;
+        const vooSkyscanner: VooSkyscanner = req.body;
 
-        const user = await UsuarioRepository.findById(usuarioId).catch(
+        const user = await UsuarioRepository.findById(vooSkyscanner.usuarioId).catch(
             e => res.status(500).json({ message: `Erro ao encontrar usuario` })
         );
-        if (!user) return res.status(422).json({ message: `Usuário com id ${usuarioId} não encontrado` })
+        if (!user) return res.status(422).json({ message: `Usuário com id ${vooSkyscanner.usuarioId} não encontrado` })
 
 
-        const voo = await VooRepository.findById(vooId).catch(
-            e => res.status(500).json({ message: `Erro ao encontrar voo` })
-        );
-        if (!voo) return res.status(422).json({ message: `Voo com id ${usuarioId} não encontrado` })
-
-        const proximoValor = (user as UsuarioDto).credits - (voo as Voo).cost * (adultos + criancas / 2)
+        const proximoValor = (user as UsuarioDto).credits - vooSkyscanner.precoVoo * (vooSkyscanner.adultos + vooSkyscanner.criancas / 2)
 
         if (proximoValor < 0)
             return res.status(422).json({ message: `Saldo insuficiente, voce precisa de ${proximoValor * -1} para comprar esta passagem` })
 
         const usuario = await UsuarioRepository.update({ credits: proximoValor } as Usuario, (user as UsuarioDto).id)
 
-        const compra = await VooPassageiroRepository.bindPassenger(
+        const compra = await VooSkyscannerRepository.findByUserId(
             (user as Usuario).id,
-            vooId,
-            poltrona,
-            criancas,
-            adultos
         ).catch(e => {
             console.log(e);
             return e => res.status(500).json({ message: `Erro ao realizar compra` })
