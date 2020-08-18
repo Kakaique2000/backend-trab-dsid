@@ -38,7 +38,7 @@ export class UsuarioController {
 
     public static async vePassagens(req: Request, res: Response) {
         const { id } = req.params;
-        const passagens = await VooPassageiroRepository.findVooByPassageiroId(parseInt(id));
+        const passagens = await VooSkyscannerRepository.findByUserId(parseInt(id));
         res.json(passagens)
     }
 
@@ -69,8 +69,9 @@ export class UsuarioController {
 
         const usuario = await UsuarioRepository.update({ credits: proximoValor } as Usuario, (user as UsuarioDto).id)
 
-        const compra = await VooSkyscannerRepository.findByUserId(
-            (user as Usuario).id,
+        
+        const compra = await VooSkyscannerRepository.insert(
+            vooSkyscanner
         ).catch(e => {
             console.log(e);
             return e => res.status(500).json({ message: `Erro ao realizar compra` })

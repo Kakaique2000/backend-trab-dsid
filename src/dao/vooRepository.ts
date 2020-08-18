@@ -91,14 +91,13 @@ export class VooSkyscannerRepository {
         const id = await knexVoo<VooSkyscanner>('voo')
             .insert(vooForm)
             .returning("id")
-            .first()
             .catch(e => {
                 return Promise.reject({error: `Não foi possível inserir voo`, description: e})}
         );
                 
         if (!id) return Promise.reject({ error: `Não foi possível inserir` });
         
-        return await VooSkyscannerRepository.findById(id!) as VooSkyscanner;
+        return await VooSkyscannerRepository.findById(id[0]!) as VooSkyscanner;
     }
 
 }
