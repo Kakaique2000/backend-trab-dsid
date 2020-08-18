@@ -38,7 +38,7 @@ export class UsuarioController {
 
     public static async vePassagens(req: Request, res: Response) {
         const { id } = req.params;
-        const passagens = await VooSkyscannerRepository.findByUserId(parseInt(id));
+        const passagens = await VooPassageiroRepository.findVooByPassageiroId(parseInt(id));
         res.json(passagens)
     }
 
